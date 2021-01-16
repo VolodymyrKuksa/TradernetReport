@@ -1,0 +1,411 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2082486A25AE12590030D8EF /* DateSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2082486925AE12590030D8EF /* DateSelectionView.swift */; };
+		208FDFFD25A748DA00E4957B /* Tradernet_ReportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FDFFC25A748DA00E4957B /* Tradernet_ReportApp.swift */; };
+		208FDFFF25A748DA00E4957B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FDFFE25A748DA00E4957B /* ContentView.swift */; };
+		208FE00125A748DA00E4957B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 208FE00025A748DA00E4957B /* Assets.xcassets */; };
+		208FE00425A748DA00E4957B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 208FE00325A748DA00E4957B /* Preview Assets.xcassets */; };
+		208FE00625A748DA00E4957B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE00525A748DA00E4957B /* Persistence.swift */; };
+		208FE00925A748DA00E4957B /* Tradernet_Report.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 208FE00725A748DA00E4957B /* Tradernet_Report.xcdatamodeld */; };
+		208FE01425A74F2900E4957B /* APIKeyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE01325A74F2900E4957B /* APIKeyListView.swift */; };
+		208FE01A25A7502B00E4957B /* APIKeyListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE01925A7502B00E4957B /* APIKeyListCellView.swift */; };
+		208FE01D25A757F400E4957B /* ModelHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE01C25A757F400E4957B /* ModelHelpers.swift */; };
+		20D862B125A7AE36003EDE83 /* GetBrokerReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D862B025A7AE36003EDE83 /* GetBrokerReportView.swift */; };
+		20D862B525A7AE79003EDE83 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D862B425A7AE79003EDE83 /* Helpers.swift */; };
+		20D862B925A7AEBF003EDE83 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D862B825A7AEBF003EDE83 /* HomeView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2082486925AE12590030D8EF /* DateSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionView.swift; sourceTree = "<group>"; };
+		208FDFF925A748DA00E4957B /* Tradernet Report.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tradernet Report.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		208FDFFC25A748DA00E4957B /* Tradernet_ReportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tradernet_ReportApp.swift; sourceTree = "<group>"; };
+		208FDFFE25A748DA00E4957B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		208FE00025A748DA00E4957B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		208FE00325A748DA00E4957B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		208FE00525A748DA00E4957B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		208FE00825A748DA00E4957B /* Tradernet_Report.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tradernet_Report.xcdatamodel; sourceTree = "<group>"; };
+		208FE00A25A748DA00E4957B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		208FE00B25A748DA00E4957B /* Tradernet_Report.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tradernet_Report.entitlements; sourceTree = "<group>"; };
+		208FE01325A74F2900E4957B /* APIKeyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyListView.swift; sourceTree = "<group>"; };
+		208FE01925A7502B00E4957B /* APIKeyListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyListCellView.swift; sourceTree = "<group>"; };
+		208FE01C25A757F400E4957B /* ModelHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHelpers.swift; sourceTree = "<group>"; };
+		20D862B025A7AE36003EDE83 /* GetBrokerReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBrokerReportView.swift; sourceTree = "<group>"; };
+		20D862B425A7AE79003EDE83 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		20D862B825A7AEBF003EDE83 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		208FDFF625A748DA00E4957B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		208FDFF025A748DA00E4957B = {
+			isa = PBXGroup;
+			children = (
+				208FDFFB25A748DA00E4957B /* Tradernet Report */,
+				208FDFFA25A748DA00E4957B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		208FDFFA25A748DA00E4957B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				208FDFF925A748DA00E4957B /* Tradernet Report.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		208FDFFB25A748DA00E4957B /* Tradernet Report */ = {
+			isa = PBXGroup;
+			children = (
+				20D862B325A7AE6A003EDE83 /* Helpers */,
+				208FE01725A74F4800E4957B /* Model */,
+				208FE01225A74EFB00E4957B /* Views */,
+				208FDFFC25A748DA00E4957B /* Tradernet_ReportApp.swift */,
+				208FE00025A748DA00E4957B /* Assets.xcassets */,
+				208FE00A25A748DA00E4957B /* Info.plist */,
+				208FE00B25A748DA00E4957B /* Tradernet_Report.entitlements */,
+				208FE00225A748DA00E4957B /* Preview Content */,
+			);
+			path = "Tradernet Report";
+			sourceTree = "<group>";
+		};
+		208FE00225A748DA00E4957B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				208FE00325A748DA00E4957B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		208FE01225A74EFB00E4957B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				208FDFFE25A748DA00E4957B /* ContentView.swift */,
+				208FE01325A74F2900E4957B /* APIKeyListView.swift */,
+				208FE01925A7502B00E4957B /* APIKeyListCellView.swift */,
+				20D862B025A7AE36003EDE83 /* GetBrokerReportView.swift */,
+				20D862B825A7AEBF003EDE83 /* HomeView.swift */,
+				2082486925AE12590030D8EF /* DateSelectionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		208FE01725A74F4800E4957B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				208FE00525A748DA00E4957B /* Persistence.swift */,
+				208FE00725A748DA00E4957B /* Tradernet_Report.xcdatamodeld */,
+				208FE01C25A757F400E4957B /* ModelHelpers.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		20D862B325A7AE6A003EDE83 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				20D862B425A7AE79003EDE83 /* Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		208FDFF825A748DA00E4957B /* Tradernet Report */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 208FE00E25A748DA00E4957B /* Build configuration list for PBXNativeTarget "Tradernet Report" */;
+			buildPhases = (
+				208FDFF525A748DA00E4957B /* Sources */,
+				208FDFF625A748DA00E4957B /* Frameworks */,
+				208FDFF725A748DA00E4957B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Tradernet Report";
+			productName = "Tradernet Report";
+			productReference = 208FDFF925A748DA00E4957B /* Tradernet Report.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		208FDFF125A748DA00E4957B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					208FDFF825A748DA00E4957B = {
+						CreatedOnToolsVersion = 12.3;
+					};
+				};
+			};
+			buildConfigurationList = 208FDFF425A748DA00E4957B /* Build configuration list for PBXProject "Tradernet Report" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 208FDFF025A748DA00E4957B;
+			productRefGroup = 208FDFFA25A748DA00E4957B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				208FDFF825A748DA00E4957B /* Tradernet Report */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		208FDFF725A748DA00E4957B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				208FE00425A748DA00E4957B /* Preview Assets.xcassets in Resources */,
+				208FE00125A748DA00E4957B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		208FDFF525A748DA00E4957B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20D862B125A7AE36003EDE83 /* GetBrokerReportView.swift in Sources */,
+				208FE01425A74F2900E4957B /* APIKeyListView.swift in Sources */,
+				208FE00625A748DA00E4957B /* Persistence.swift in Sources */,
+				20D862B925A7AEBF003EDE83 /* HomeView.swift in Sources */,
+				2082486A25AE12590030D8EF /* DateSelectionView.swift in Sources */,
+				208FE00925A748DA00E4957B /* Tradernet_Report.xcdatamodeld in Sources */,
+				20D862B525A7AE79003EDE83 /* Helpers.swift in Sources */,
+				208FE01D25A757F400E4957B /* ModelHelpers.swift in Sources */,
+				208FE01A25A7502B00E4957B /* APIKeyListCellView.swift in Sources */,
+				208FDFFF25A748DA00E4957B /* ContentView.swift in Sources */,
+				208FDFFD25A748DA00E4957B /* Tradernet_ReportApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		208FE00C25A748DA00E4957B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		208FE00D25A748DA00E4957B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		208FE00F25A748DA00E4957B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tradernet Report/Tradernet_Report.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Tradernet Report/Preview Content\"";
+				DEVELOPMENT_TEAM = 4N4M683WRF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Tradernet Report/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "vkuksa.Tradernet-Report";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		208FE01025A748DA00E4957B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tradernet Report/Tradernet_Report.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Tradernet Report/Preview Content\"";
+				DEVELOPMENT_TEAM = 4N4M683WRF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Tradernet Report/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "vkuksa.Tradernet-Report";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		208FDFF425A748DA00E4957B /* Build configuration list for PBXProject "Tradernet Report" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				208FE00C25A748DA00E4957B /* Debug */,
+				208FE00D25A748DA00E4957B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		208FE00E25A748DA00E4957B /* Build configuration list for PBXNativeTarget "Tradernet Report" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				208FE00F25A748DA00E4957B /* Debug */,
+				208FE01025A748DA00E4957B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		208FE00725A748DA00E4957B /* Tradernet_Report.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				208FE00825A748DA00E4957B /* Tradernet_Report.xcdatamodel */,
+			);
+			currentVersion = 208FE00825A748DA00E4957B /* Tradernet_Report.xcdatamodel */;
+			path = Tradernet_Report.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 208FDFF125A748DA00E4957B /* Project object */;
+}
