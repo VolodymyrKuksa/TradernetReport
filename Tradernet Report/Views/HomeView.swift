@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @State var isDisabled = false
         
     var body: some View {
         NavigationView {
             APIKeyListView()
-            Text("Select to bla bla bla")
+//            Divider()
+            GetBrokerReportView(configs: GetBrokerReportConfigs(), isDisabled: $isDisabled)
         }
-        .navigationViewStyle(DoubleColumnNavigationViewStyle())
-        .frame(minWidth: 800)
+        .frame(width: 880)
     }
 }
 

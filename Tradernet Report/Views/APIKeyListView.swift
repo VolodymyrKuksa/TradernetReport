@@ -10,7 +10,8 @@ import SwiftUI
 
 class APIKeysData: ObservableObject {
     @Published public var selectedIdentifiers = Set<ObjectIdentifier>()
-    public let keys: [APIKey]
+    @Published public var keys: [APIKey]
+    @Published public var changed = true
     
     public var selectedKeys: [APIKey] {
         keys.filter { selectedIdentifiers.contains($0.id) }
@@ -21,11 +22,12 @@ class APIKeysData: ObservableObject {
     }
 }
 
-struct APIKeyListView: View {
-    
-    @State var isDisabled = false
-    
+struct APIKeyListView: View {    
     @EnvironmentObject var keysData: APIKeysData
+    
+    @State var isShowingCreateKeyModal = false
+    @State var isShowingEditKeyModal = false
+    @State var editedKey: APIKey? = nil
     
     var body: some View {
         List(selection: $keysData.selectedIdentifiers) {
@@ -33,41 +35,29 @@ struct APIKeyListView: View {
                 ForEach(keysData.keys) { apiKey in
                     let isGrayedOut = (keysData.keys.firstIndex(of: apiKey)! % 2) != 0 && !keysData.selectedKeys.contains(apiKey)
                     
-                    NavigationLink(destination: GetBrokerReportView(configs:GetBrokerReportConfigs(), isDisabled: $isDisabled)) {
-                        APIKeyListCellView(apiKey: apiKey)
-                            .padding(6)
-                            .onLongPressGesture { print("long press") }
-                            .background(isGrayedOut ? Color(CGColor(gray: 0.6, alpha: 0.3)) : Color.clear)
-                            .cornerRadius(8)
-                            .contextMenu {
-                                Button(action: {}) {
-                                    Text("Edit")
-                                    Image(systemName: "pencil.circle")
-                                }
-                                Button(action: {}) {
-                                    Text("Delete")
-                                    Image(systemName: "trash")
-                                        .foregroundColor(.red)
-                                }
-                                
-                                Divider()
-                                
-                                Button(action: { insertIntoPasteboard(text: apiKey.publicKey!) }) {
-                                    Text("Copy Public Key: \(apiKey.publicKey!)")
-                                    Image(systemName: "doc.on.clipboard")
-                                }
-                                
-                                Button(action: { insertIntoPasteboard(text: apiKey.secret!) }) {
-                                    Text("Copy Secret")
-                                    Image(systemName: "doc.on.clipboard")
-                                }
+                    APIKeyListCellView(apiKey: apiKey)
+                        .padding(6)
+                        .background(isGrayedOut ? Color(CGColor(gray: 0.6, alpha: 0.3)) : Color.clear)
+                        .cornerRadius(8)
+                        .contextMenu {
+                            Button(action: { insertIntoPasteboard(text: apiKey.publicKey!) }) {
+                                Text("Copy Public Key: \(apiKey.publicKey!)")
+                                Image(systemName: "doc.on.clipboard")
+                            }
+                            
+                            Button(action: { insertIntoPasteboard(text: apiKey.secret!) }) {
+                                Text("Copy Secret")
+                                Image(systemName: "doc.on.clipboard")
                             }
                         }
                     }
             }
         }
         .navigationTitle("API Keys")
-        .frame(minWidth: 350)
+        .frame(width: 350)
+        .sheet(isPresented: $isShowingCreateKeyModal) {
+            EditAPIKeyView(isShown: $isShowingCreateKeyModal, persistenceController: .shared)
+        }
     }
     
     var listHeader: some View {
@@ -76,7 +66,7 @@ struct APIKeyListView: View {
             Text("API Keys")
                 .font(.largeTitle)
             Spacer()
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+            Button(action: { withAnimation { isShowingCreateKeyModal = true } }) {
                 Image(systemName: "plus")
             }
             .help("Add New API Key")
@@ -89,7 +79,8 @@ struct APIKeyListView_Previews: PreviewProvider {
     static let previewManyAPIKeys = fetchAPIKeys(.previewMany)
     
     static var previews: some View {
-        Group {
+        PersistenceController.shared = .previewMany
+        return Group {
             APIKeyListView()
                 .environmentObject(APIKeysData(keys: previewManyAPIKeys))
             

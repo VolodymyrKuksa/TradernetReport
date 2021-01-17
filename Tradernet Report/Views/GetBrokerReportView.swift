@@ -54,8 +54,8 @@ struct GetBrokerReportView: View {
                 main
             }
         }
-        .padding()
         .frame(minWidth: 350)
+        .padding()
     }
     
     private let topOffset: CGFloat = 0.16
@@ -66,9 +66,9 @@ struct GetBrokerReportView: View {
             
             VStack {
                 Spacer()
-                    .frame(width: geometry.size.width, height: offsetHeight)
+                    .frame(height: offsetHeight)
                 content
-                    .frame(width: geometry.size.width, height: contentHeight, alignment: .top)
+                    .frame(height: contentHeight, alignment: .top)
             }
         }
     }

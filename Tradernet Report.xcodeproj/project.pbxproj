@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2009A9EC25B3490F001EF6B8 /* EditAPIKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009A9EB25B3490F001EF6B8 /* EditAPIKeyView.swift */; };
 		2082486A25AE12590030D8EF /* DateSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2082486925AE12590030D8EF /* DateSelectionView.swift */; };
 		208FDFFD25A748DA00E4957B /* Tradernet_ReportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FDFFC25A748DA00E4957B /* Tradernet_ReportApp.swift */; };
 		208FDFFF25A748DA00E4957B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FDFFE25A748DA00E4957B /* ContentView.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2009A9EB25B3490F001EF6B8 /* EditAPIKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAPIKeyView.swift; sourceTree = "<group>"; };
 		2082486925AE12590030D8EF /* DateSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionView.swift; sourceTree = "<group>"; };
 		208FDFF925A748DA00E4957B /* Tradernet Report.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tradernet Report.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		208FDFFC25A748DA00E4957B /* Tradernet_ReportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tradernet_ReportApp.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				20D862B025A7AE36003EDE83 /* GetBrokerReportView.swift */,
 				20D862B825A7AEBF003EDE83 /* HomeView.swift */,
 				2082486925AE12590030D8EF /* DateSelectionView.swift */,
+				2009A9EB25B3490F001EF6B8 /* EditAPIKeyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				20D862B125A7AE36003EDE83 /* GetBrokerReportView.swift in Sources */,
 				208FE01425A74F2900E4957B /* APIKeyListView.swift in Sources */,
 				208FE00625A748DA00E4957B /* Persistence.swift in Sources */,
+				2009A9EC25B3490F001EF6B8 /* EditAPIKeyView.swift in Sources */,
 				20D862B925A7AEBF003EDE83 /* HomeView.swift in Sources */,
 				2082486A25AE12590030D8EF /* DateSelectionView.swift in Sources */,
 				208FE00925A748DA00E4957B /* Tradernet_Report.xcdatamodeld in Sources */,

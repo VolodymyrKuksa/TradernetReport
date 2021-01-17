@@ -10,7 +10,10 @@ import SwiftUI
 
 struct APIKeyListCellView: View {
     
-    let apiKey: APIKey
+    @EnvironmentObject var keysData: APIKeysData
+    @ObservedObject var apiKey: APIKey
+    
+    @State private var isShowingEditModal = false
     
     /// LAYOUT
     var body: some View {
@@ -29,15 +32,16 @@ struct APIKeyListCellView: View {
                 Spacer()
                 clientName
             }
-            
-//            Divider()
         }
         .frame(height: 50)
+        .sheet(isPresented: $isShowingEditModal) {
+            EditAPIKeyView(isShown: $isShowingEditModal, persistenceController: .shared, keyToEdit: apiKey)
+        }
     }
     
     /// ELEMENTS
     private var apiKeyName: some View {
-        Text(apiKey.friendlyName!)
+        Text(apiKey.friendlyName ?? "")
             .font(.headline)
     }
     
@@ -51,7 +55,7 @@ struct APIKeyListCellView: View {
     private let modificationButtonSize: CGFloat = 18
     
     private var editButton: some View {
-        return Button(action: {}) {
+        return Button(action: { withAnimation { isShowingEditModal = true } }) {
             Image(systemName: "pencil.circle")
                 .resizable()
                 .scaledToFit()
@@ -62,7 +66,11 @@ struct APIKeyListCellView: View {
     }
     
     private var deleteButton: some View {
-        return Button(action: {}) {
+        return Button(action: {
+            PersistenceController.shared.container.viewContext.delete(apiKey)
+            PersistenceController.shared.saveContext()
+            keysData.keys = fetchAPIKeys(.shared)
+        }) {
             Image(systemName: "trash")
                 .resizable()
                 .scaledToFit()
@@ -87,7 +95,8 @@ struct APIKeyListCellView_Previews: PreviewProvider {
     static let previewAPIKeys = fetchAPIKeys()
     
     static var previews: some View {
-        Group {
+        PersistenceController.shared = .previewMany
+        return Group {
             ForEach(previewAPIKeys.indices) { idx in
                 APIKeyListCellView(apiKey: previewAPIKeys[idx])
                     .environment(\.colorScheme, idx % 2 == 1 ? .light : .dark)

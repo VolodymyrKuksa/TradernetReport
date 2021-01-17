@@ -8,7 +8,7 @@
 import CoreData
 
 struct PersistenceController {
-    static let shared = PersistenceController()
+    static var shared = PersistenceController()
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
@@ -54,6 +54,18 @@ struct PersistenceController {
     }()
 
     let container: NSPersistentContainer
+    
+    func saveContext() {
+      let context = container.viewContext
+      if context.hasChanges {
+        do {
+          try context.save()
+        } catch {
+          let nserror = error as NSError
+          fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+      }
+    }
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Tradernet_Report")
