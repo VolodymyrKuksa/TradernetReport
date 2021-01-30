@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2009A9EC25B3490F001EF6B8 /* EditAPIKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009A9EB25B3490F001EF6B8 /* EditAPIKeyView.swift */; };
+		202C4AD925C0768700701886 /* PlainAccountInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C4AD825C0768700701886 /* PlainAccountInfoData.swift */; };
+		202C4ADC25C163FE00701886 /* GetBrokerReportCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C4ADB25C163FE00701886 /* GetBrokerReportCommand.swift */; };
+		202C4ADF25C1664D00701886 /* GetBrokerReportConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C4ADE25C1664D00701886 /* GetBrokerReportConfigs.swift */; };
 		2082486A25AE12590030D8EF /* DateSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2082486925AE12590030D8EF /* DateSelectionView.swift */; };
 		208FDFFD25A748DA00E4957B /* Tradernet_ReportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FDFFC25A748DA00E4957B /* Tradernet_ReportApp.swift */; };
 		208FDFFF25A748DA00E4957B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FDFFE25A748DA00E4957B /* ContentView.swift */; };
@@ -25,11 +28,14 @@
 
 /* Begin PBXFileReference section */
 		2009A9EB25B3490F001EF6B8 /* EditAPIKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAPIKeyView.swift; sourceTree = "<group>"; };
+		202C4AD825C0768700701886 /* PlainAccountInfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainAccountInfoData.swift; sourceTree = "<group>"; };
+		202C4ADB25C163FE00701886 /* GetBrokerReportCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBrokerReportCommand.swift; sourceTree = "<group>"; };
+		202C4ADE25C1664D00701886 /* GetBrokerReportConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBrokerReportConfigs.swift; sourceTree = "<group>"; };
 		2082486925AE12590030D8EF /* DateSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionView.swift; sourceTree = "<group>"; };
 		208FDFF925A748DA00E4957B /* Tradernet Report.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tradernet Report.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		208FDFFC25A748DA00E4957B /* Tradernet_ReportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tradernet_ReportApp.swift; sourceTree = "<group>"; };
 		208FDFFE25A748DA00E4957B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		208FE00025A748DA00E4957B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		208FE00025A748DA00E4957B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Tradernet Report/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		208FE00325A748DA00E4957B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		208FE00525A748DA00E4957B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		208FE00825A748DA00E4957B /* Tradernet_Report.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tradernet_Report.xcdatamodel; sourceTree = "<group>"; };
@@ -111,8 +117,10 @@
 			isa = PBXGroup;
 			children = (
 				208FE00525A748DA00E4957B /* Persistence.swift */,
+				202C4AD825C0768700701886 /* PlainAccountInfoData.swift */,
 				208FE00725A748DA00E4957B /* Tradernet_Report.xcdatamodeld */,
 				208FE01C25A757F400E4957B /* ModelHelpers.swift */,
+				202C4ADE25C1664D00701886 /* GetBrokerReportConfigs.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -121,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				20D862B425A7AE79003EDE83 /* Helpers.swift */,
+				202C4ADB25C163FE00701886 /* GetBrokerReportCommand.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -141,6 +150,8 @@
 			dependencies = (
 			);
 			name = "Tradernet Report";
+			packageProductDependencies = (
+			);
 			productName = "Tradernet Report";
 			productReference = 208FDFF925A748DA00E4957B /* Tradernet Report.app */;
 			productType = "com.apple.product-type.application";
@@ -168,6 +179,8 @@
 				Base,
 			);
 			mainGroup = 208FDFF025A748DA00E4957B;
+			packageReferences = (
+			);
 			productRefGroup = 208FDFFA25A748DA00E4957B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -203,9 +216,12 @@
 				208FE00925A748DA00E4957B /* Tradernet_Report.xcdatamodeld in Sources */,
 				20D862B525A7AE79003EDE83 /* Helpers.swift in Sources */,
 				208FE01D25A757F400E4957B /* ModelHelpers.swift in Sources */,
+				202C4ADF25C1664D00701886 /* GetBrokerReportConfigs.swift in Sources */,
+				202C4AD925C0768700701886 /* PlainAccountInfoData.swift in Sources */,
 				208FE01A25A7502B00E4957B /* APIKeyListCellView.swift in Sources */,
 				208FDFFF25A748DA00E4957B /* ContentView.swift in Sources */,
 				208FDFFD25A748DA00E4957B /* Tradernet_ReportApp.swift in Sources */,
+				202C4ADC25C163FE00701886 /* GetBrokerReportCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

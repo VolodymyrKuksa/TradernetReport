@@ -8,46 +8,6 @@
 import SwiftUI
 
 
-class TimeFrame: ObservableObject {
-    @Published var isSingleDay = false
-    @Published var selectedDay = Date()
-    
-    @Published var dateStart = Date()
-    @Published var dateEnd = Date()
-    
-    @Published var timePeriod = TimePeriod.evening
-    
-    enum TimePeriod: String, CaseIterable, Identifiable {
-        case morning = "08:40:00"
-        case evening = "23:59:59"
-        
-        var id: TimePeriod { self }
-    }
-    
-    
-    static let dayDuration = TimeInterval(24 * 60 * 60)
-    
-    var dateInterval: DateInterval {
-        let hours = timePeriod == TimePeriod.morning
-            ? DateComponents(hour: 8, minute: 40, second: 59)
-            : DateComponents(second: -1) // 23:59:59 of the previous day
-        
-        if isSingleDay {
-            let startDate = Calendar.current.date(byAdding: hours, to: stripTime(from: selectedDay))!
-            return DateInterval(start: startDate, duration: TimeFrame.dayDuration)
-        } else {
-            let startDate = Calendar.current.date(byAdding: hours, to: stripTime(from: dateStart))!
-            let endDate = Calendar.current.date(byAdding: hours, to: stripTime(from: dateEnd))!
-            
-            let duration = DateInterval(start: startDate, end: endDate).duration + TimeFrame.dayDuration
-            
-            return DateInterval(start: startDate, duration: duration)
-        }
-    }
-    
-    var isValid: Bool { isSingleDay || DateInterval(start: stripTime(from: dateStart), end: stripTime(from: dateEnd)).duration >= TimeFrame.dayDuration }
-}
-
 extension AnyTransition {
     static func moveAndOpacity(edge: Edge) -> AnyTransition {
         return AnyTransition.move(edge: edge)
@@ -109,13 +69,13 @@ struct DateSelectionView: View {
 }
 
 
-struct DateSelectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        let singleDayTimeFrame = TimeFrame()
-        singleDayTimeFrame.isSingleDay = true
-        return Group {
-            DateSelectionView(timeFrame: TimeFrame())
-            DateSelectionView(timeFrame: singleDayTimeFrame)
-        }
-    }
-}
+//struct DateSelectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let singleDayTimeFrame = TimeFrame()
+//        singleDayTimeFrame.isSingleDay = true
+//        return Group {
+//            DateSelectionView(timeFrame: TimeFrame())
+//            DateSelectionView(timeFrame: singleDayTimeFrame)
+//        }
+//    }
+//}

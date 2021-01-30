@@ -14,6 +14,7 @@ struct APIKeyListCellView: View {
     @ObservedObject var apiKey: APIKey
     
     @State private var isShowingEditModal = false
+    @State private var isShowingDeleteAlert = false
     
     /// LAYOUT
     var body: some View {
@@ -46,8 +47,7 @@ struct APIKeyListCellView: View {
     }
     
     private var clientCode: some View {
-        // TODO: Replace this
-        Text("108435")
+        Text(apiKey.clientCode ?? "")
             .font(.body)
             .foregroundColor(.secondary)
     }
@@ -66,23 +66,30 @@ struct APIKeyListCellView: View {
     }
     
     private var deleteButton: some View {
-        return Button(action: {
-            PersistenceController.shared.container.viewContext.delete(apiKey)
-            PersistenceController.shared.saveContext()
-            keysData.keys = fetchAPIKeys(.shared)
-        }) {
+        return Button(action: { withAnimation { isShowingDeleteAlert = true } }) {
             Image(systemName: "trash")
                 .resizable()
                 .scaledToFit()
                 .frame(width: modificationButtonSize, height: modificationButtonSize)
+        }
+        .alert(isPresented: $isShowingDeleteAlert) {
+            Alert(
+                title: Text("Key Deletion"),
+                message: Text("Are you sure you want to delete key \"\(apiKey.friendlyName!)\""),
+                primaryButton: .destructive(Text("Delete")) {
+                    PersistenceController.shared.container.viewContext.delete(apiKey)
+                    PersistenceController.shared.saveContext()
+                    keysData.keys = fetchAPIKeys(.shared)
+                },
+                secondaryButton: .cancel()
+            )
         }
         .buttonStyle(PlainButtonStyle())
         .help("Delete")
     }
     
     private var clientName: some View {
-        // TODO: Replace this
-        Text("Volodymyr Kuksa")
+        Text(apiKey.clientName ?? "")
             .font(.body)
             .foregroundColor(.secondary)
     }

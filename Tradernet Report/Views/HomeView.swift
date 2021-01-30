@@ -9,15 +9,30 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @EnvironmentObject var keysData: APIKeysData
+    
     @State var isDisabled = false
         
     var body: some View {
         NavigationView {
             APIKeyListView()
-//            Divider()
-            GetBrokerReportView(configs: GetBrokerReportConfigs(), isDisabled: $isDisabled)
+                .blur(radius: isDisabled ? 3 : 0)
+            
+            switch keysData.selectedKeys.count {
+            case 0:
+                Text("Select an API Key to proceed")
+                    .font(.largeTitle)
+                    .foregroundColor(.secondary)
+            case 1:
+                GetBrokerReportView(configs: GetBrokerReportConfigs(dbConfig: keysData.selectedKey!.configs!), isDisabled: $isDisabled)
+            default:
+                Text("Multiple API Keys are currently not supported :(")
+                    .font(.largeTitle)
+                    .foregroundColor(.secondary)
+            }
         }
-        .frame(width: 880)
+        .disabled(isDisabled)
+        .allowsHitTesting(!isDisabled)
     }
 }
 
@@ -32,8 +47,8 @@ struct HomeView_Previews: PreviewProvider {
         return Group {
             HomeView()
                 .environmentObject(keysDataWithSelection)
-//            HomeView(isDisabled: true)
-//                .environmentObject(keysDataWithSelection)
+            HomeView(isDisabled: true)
+                .environmentObject(keysDataWithSelection)
             HomeView()
                 .environmentObject(APIKeysData(keys: previewManyApiKeys))
                 .environment(\.colorScheme, .dark)

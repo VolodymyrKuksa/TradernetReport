@@ -17,6 +17,11 @@ class APIKeysData: ObservableObject {
         keys.filter { selectedIdentifiers.contains($0.id) }
     }
     
+    public var selectedKey: APIKey? {
+        let selected = selectedKeys
+        return selected.count == 1 ? selected[0] : nil
+    }
+    
     init(keys: [APIKey]) {
         self.keys = keys
     }
@@ -53,8 +58,9 @@ struct APIKeyListView: View {
                     }
             }
         }
+        .listStyle(PlainListStyle())
         .navigationTitle("API Keys")
-        .frame(width: 350)
+        .frame(minWidth: 350, idealWidth: 350)
         .sheet(isPresented: $isShowingCreateKeyModal) {
             EditAPIKeyView(isShown: $isShowingCreateKeyModal, persistenceController: .shared)
         }

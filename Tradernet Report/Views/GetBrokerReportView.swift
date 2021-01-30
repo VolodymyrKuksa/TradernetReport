@@ -8,69 +8,38 @@
 import Foundation
 import AppKit
 import SwiftUI
-import Combine
-
-
-class GetBrokerReportConfigs: ObservableObject {
-    @Published var timeFrame = TimeFrame()
-    @Published var fileFormat = FileFormat.json
-    @Published var downloadURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0]
-    
-    enum FileFormat: String, CaseIterable, Identifiable {
-        case html = "html"
-        case json = "json"
-        case pdf = "pdf"
-        case xls = "xls"
-        case xml = "xml"
-        
-        var id: FileFormat { self }
-    }
-    
-    var anyCancellable: AnyCancellable? = nil
-        
-    init() {
-        anyCancellable = timeFrame.objectWillChange.sink { [weak self] (_) in
-            self?.objectWillChange.send()
-        }
-    }
-}
 
 
 struct GetBrokerReportView: View {
     
     @ObservedObject var configs: GetBrokerReportConfigs
+    
     @EnvironmentObject var keysData: APIKeysData
     @Binding var isDisabled: Bool
     
     @State var showAdvanced = false
     
-    var body: some View {
-        ZStack {
-            if keysData.selectedIdentifiers.count == 0 {
-                Text("Select an API Key to proceed")
-                    .font(.largeTitle)
-                    .foregroundColor(.secondary)
-            } else {
-                main
-            }
-        }
-        .frame(minWidth: 350)
-        .padding()
-    }
-    
     private let topOffset: CGFloat = 0.16
-    private var main: some View {
+    var body: some View {
         GeometryReader { geometry in
             let offsetHeight = geometry.size.height * topOffset
             let contentHeight = geometry.size.height * (1 - topOffset)
             
             VStack {
-                Spacer()
-                    .frame(height: offsetHeight)
+                HStack {
+                    Text(keysData.selectedKey?.friendlyName ?? "")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                        .padding()
+                    Spacer()
+                }
+                .frame(height: offsetHeight)
                 content
                     .frame(height: contentHeight, alignment: .top)
             }
         }
+        .frame(minWidth: 250)
+        .padding()
     }
     
     private var content: some View {
@@ -84,7 +53,7 @@ struct GetBrokerReportView: View {
             }
             
             HStack {
-                Text("Download To: \(configs.downloadURL.path)")
+                Text("Download To: \(configs.downloadURL)")
                 
                 Button(action: selectDownloadPathAction) {
                     Text("Change...")
@@ -101,6 +70,7 @@ struct GetBrokerReportView: View {
                 .font(.headline)
             })
             .padding()
+            .disabled(!configs.isValid)
             
             Divider()
             HStack {
@@ -132,8 +102,24 @@ struct GetBrokerReportView: View {
     
     private func downloadReportAction() {
         withAnimation { isDisabled = true }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
         DispatchQueue.global(qos: .background).async {
-            sleep(2)
+
+            let selectedAPIKey = keysData.selectedKeys[0]
+            let result = getBrokerReport(
+                publicKey: selectedAPIKey.publicKey!,
+                secret: selectedAPIKey.secret!,
+                fileFormat: configs.fileFormat.rawValue,
+                outputDirectory: configs.downloadURL,
+                dateStart: configs.timeFrame.dateInterval.start,
+                dateEnd: configs.timeFrame.dateInterval.end,
+                timePeriod: configs.timeFrame.timePeriod == TimeFrame.TimePeriod.morning ? "morning" : "evening"
+            )
+            
+            print("code: \(result.code)\nout: \(result.out)\nerr: \(result.err)")
             
             DispatchQueue.main.async {
                 withAnimation { isDisabled = false }
@@ -149,6 +135,7 @@ struct GetBrokerReportView: View {
         openPanel.canChooseDirectories = true
         openPanel.canChooseFiles = false
         openPanel.canCreateDirectories = true
+        openPanel.directoryURL = URL(fileURLWithPath: configs.downloadURL)
         return openPanel
     }
     
@@ -156,11 +143,14 @@ struct GetBrokerReportView: View {
         let fileDialog = getFileDialog()
         if fileDialog.runModal() == NSApplication.ModalResponse.OK,
            let newPath = fileDialog.url {
-            configs.downloadURL = newPath
+            configs.downloadURL = newPath.path
         }
     }
     
     private func composeTimeFrameHint() -> String {
+        if !configs.timeFrame.isValid {
+            return "Invalid time frame."
+        }
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.y hh:mm:ss"
         
@@ -169,29 +159,29 @@ struct GetBrokerReportView: View {
     }
 }
 
-struct GetBrokerReportView_Previews: PreviewProvider {
-    static let previewApiKeys = fetchAPIKeys()
-    static let previewManyApiKeys = fetchAPIKeys(.previewMany)
-    
-    @State static var isDisabled = false
-    
-    static var previews: some View {
-        let keysDataWithSelection = APIKeysData(keys: previewApiKeys)
-        keysDataWithSelection.selectedIdentifiers.insert(keysDataWithSelection.keys[0].id)
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.y hh:mm:ss"
-        
-        let edgeCase = GetBrokerReportConfigs()
-        edgeCase.timeFrame.dateStart = formatter.date(from: "01.01.2021 00:00:00")!
-                
-        return Group {
-            GetBrokerReportView(configs: GetBrokerReportConfigs(), isDisabled: $isDisabled)
-                .environmentObject(keysDataWithSelection)
-            GetBrokerReportView(configs: edgeCase, isDisabled: $isDisabled, showAdvanced: true)
-                .environmentObject(keysDataWithSelection)
-            GetBrokerReportView(configs: GetBrokerReportConfigs(), isDisabled: $isDisabled)
-                .environmentObject(APIKeysData(keys: previewApiKeys))
-        }
-    }
-}
+//struct GetBrokerReportView_Previews: PreviewProvider {
+//    static let previewApiKeys = fetchAPIKeys()
+//    static let previewManyApiKeys = fetchAPIKeys(.previewMany)
+//
+//    @State static var isDisabled = false
+//
+//    static var previews: some View {
+//        let keysDataWithSelection = APIKeysData(keys: previewApiKeys)
+//        keysDataWithSelection.selectedIdentifiers.insert(keysDataWithSelection.keys[0].id)
+//
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "dd.MM.y hh:mm:ss"
+//
+//        let edgeCase = GetBrokerReportConfigs()
+//        edgeCase.timeFrame.dateStart = formatter.date(from: "01.01.2021 00:00:00")!
+//
+//        return Group {
+//            GetBrokerReportView(isDisabled: $isDisabled)
+//                .environmentObject(keysDataWithSelection)
+//            GetBrokerReportView(isDisabled: $isDisabled, showAdvanced: true)
+//                .environmentObject(keysDataWithSelection)
+//            GetBrokerReportView(isDisabled: $isDisabled)
+//                .environmentObject(APIKeysData(keys: previewApiKeys))
+//        }
+//    }
+//}

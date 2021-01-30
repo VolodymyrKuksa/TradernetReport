@@ -18,11 +18,19 @@ struct PersistenceController {
         sampleKey.friendlyName = "Sample Key"
         sampleKey.publicKey = "my_public_key"
         sampleKey.secret = "my_secret"
+        sampleKey.clientCode = "12345"
+        sampleKey.clientName = "Volodymyr Kuksa"
+        sampleKey.configs = BrokerReportConfigsEntity(context: viewContext)
+        sampleKey.configs?.timeFrame = TimeFrameEntity(context: viewContext)
         
         let sampleKeyWithLargeName = APIKey(context: viewContext)
         sampleKeyWithLargeName.friendlyName = "This is an API Key with a real big name he he he he he he he he"
         sampleKeyWithLargeName.publicKey = "my_public_key"
         sampleKeyWithLargeName.secret = "my_secret"
+        sampleKeyWithLargeName.clientCode = "12345"
+        sampleKeyWithLargeName.clientName = "Volodymyr Kuksa"
+        sampleKeyWithLargeName.configs = BrokerReportConfigsEntity(context: viewContext)
+        sampleKeyWithLargeName.configs?.timeFrame = TimeFrameEntity(context: viewContext)
         
         do {
             try viewContext.save()
@@ -42,6 +50,10 @@ struct PersistenceController {
             sampleKey.friendlyName = "Sample Key \(idx)"
             sampleKey.publicKey = "my_public_key \(idx)"
             sampleKey.secret = "my_secret \(idx)"
+            sampleKey.clientCode = "12345"
+            sampleKey.clientName = "Volodymyr Kuksa"
+            sampleKey.configs = BrokerReportConfigsEntity(context: viewContext)
+            sampleKey.configs?.timeFrame = TimeFrameEntity(context: viewContext)
         }
         
         do {

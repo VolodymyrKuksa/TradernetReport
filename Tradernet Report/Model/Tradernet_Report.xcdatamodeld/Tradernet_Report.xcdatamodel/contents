@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="APIKey" representedClassName="APIKey" syncable="YES" codeGenerationType="class">
+        <attribute name="clientCode" optional="YES" attributeType="String"/>
+        <attribute name="clientName" optional="YES" attributeType="String"/>
         <attribute name="friendlyName" attributeType="String"/>
         <attribute name="publicKey" attributeType="String"/>
         <attribute name="secret" attributeType="String"/>
+        <relationship name="configs" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="BrokerReportConfigsEntity" inverseName="apiKey" inverseEntity="BrokerReportConfigsEntity"/>
+    </entity>
+    <entity name="BrokerReportConfigsEntity" representedClassName="BrokerReportConfigsEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="downloadURL" attributeType="String"/>
+        <attribute name="fileFormat" attributeType="String" defaultValueString="json"/>
+        <relationship name="apiKey" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="APIKey" inverseName="configs" inverseEntity="APIKey"/>
+        <relationship name="timeFrame" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TimeFrameEntity" inverseName="configs" inverseEntity="TimeFrameEntity"/>
+    </entity>
+    <entity name="TimeFrameEntity" representedClassName="TimeFrameEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateEnd" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateStart" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isSingleDay" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="NO"/>
+        <attribute name="selectedDay" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timePeriod" attributeType="String" defaultValueString="23:59:59"/>
+        <relationship name="configs" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="BrokerReportConfigsEntity" inverseName="timeFrame" inverseEntity="BrokerReportConfigsEntity"/>
     </entity>
     <elements>
-        <element name="APIKey" positionX="-63" positionY="-18" width="128" height="74"/>
+        <element name="APIKey" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="BrokerReportConfigsEntity" positionX="-63.2523193359375" positionY="42.34869384765625" width="128" height="89"/>
+        <element name="TimeFrameEntity" positionX="-64.0157470703125" positionY="108.521728515625" width="128" height="14"/>
     </elements>
 </model>

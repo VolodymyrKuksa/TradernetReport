@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+struct GetBrokerReportResponse: Decodable {
+    let plainAccountInfoData: PlainAccountInfoData
+}
+
 struct EditAPIKeyView: View {
     @EnvironmentObject var keysData: APIKeysData
     
@@ -19,6 +23,7 @@ struct EditAPIKeyView: View {
     @State var secret = ""
     
     @State var displayErrors = false
+    @State var isDisplayingErrorAlert = false
     
     private let title: String
     
@@ -67,6 +72,9 @@ struct EditAPIKeyView: View {
             publicKey = editedKey.publicKey!
             secret = editedKey.secret!
         }
+        .alert(isPresented: $isDisplayingErrorAlert) {
+            Alert(title: Text("Invalid API keys"), message: Text("Failed to communicate with tradernet using the provided keys."))
+        }
     }
     
     private func editorialTextField(label: String, _ value: Binding<String>) -> some View {
@@ -93,9 +101,38 @@ struct EditAPIKeyView: View {
             return
         }
         
+        let result = getBrokerReport(
+            publicKey: publicKey,
+            secret: secret
+        )
+        result.debugPrint()
+        if result.code != 0 {
+            isDisplayingErrorAlert = true
+            return
+        }
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        let response = try! decoder.decode(GetBrokerReportResponse.self, from: result.out.data(using: .utf8)!)
+        
+        editedKey.clientCode = response.plainAccountInfoData.clientCode
+        editedKey.clientName = response.plainAccountInfoData.clientName
         editedKey.friendlyName = friendlyName
         editedKey.publicKey = publicKey
         editedKey.secret = secret
+        
+        if editedKey.configs == nil {
+            editedKey.configs = BrokerReportConfigsEntity(context: persistenceController.container.viewContext)
+            editedKey.configs!.downloadURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0].path
+        }
+        if editedKey.configs!.timeFrame == nil {
+            editedKey.configs!.timeFrame = TimeFrameEntity(context: persistenceController.container.viewContext)
+            let timeFrame = editedKey.configs!.timeFrame!
+            timeFrame.dateStart = Date()
+            timeFrame.dateEnd = Date()
+            timeFrame.selectedDay = Date()
+        }
         
         persistenceController.saveContext()
         
