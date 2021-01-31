@@ -22,9 +22,9 @@ struct PersistenceController {
         sampleKey.secret = secret
         sampleKey.clientCode = clientCode
         sampleKey.clientName = clientName
-        sampleKey.configs = BrokerReportConfigsEntity(context: container.viewContext)
+        sampleKey.configs = BrokerReportConfigsData(context: container.viewContext)
         sampleKey.configs!.downloadURL = "~/Downloads/"
-        sampleKey.configs!.timeFrame = TimeFrameEntity(context: container.viewContext)
+        sampleKey.configs!.timeFrame = TimeFrameData(context: container.viewContext)
         sampleKey.configs!.timeFrame!.selectedDay = Date()
         sampleKey.configs!.timeFrame!.dateStart = Date()
         sampleKey.configs!.timeFrame!.dateEnd = Date()

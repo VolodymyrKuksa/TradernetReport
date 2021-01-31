@@ -8,37 +8,18 @@
 import SwiftUI
 
 
-class APIKeysData: ObservableObject {
-    @Published public var selectedIdentifiers = Set<ObjectIdentifier>()
-    @Published public var keys: [APIKey]
-    @Published public var changed = true
-    
-    public var selectedKeys: [APIKey] {
-        keys.filter { selectedIdentifiers.contains($0.id) }
-    }
-    
-    public var selectedKey: APIKey? {
-        let selected = selectedKeys
-        return selected.count == 1 ? selected[0] : nil
-    }
-    
-    init(keys: [APIKey]) {
-        self.keys = keys
-    }
-}
-
 struct APIKeyListView: View {    
-    @EnvironmentObject var keysData: APIKeysData
+    @EnvironmentObject var keysStorage: APIKeyStorage
     
     @State var isShowingCreateKeyModal = false
     @State var isShowingEditKeyModal = false
     @State var editedKey: APIKey? = nil
     
     var body: some View {
-        List(selection: $keysData.selectedIdentifiers) {
+        List(selection: $keysStorage.selectedIdentifiers) {
             Section(header: listHeader) {
-                ForEach(keysData.keys) { apiKey in
-                    let isGrayedOut = (keysData.keys.firstIndex(of: apiKey)! % 2) != 0 && !keysData.selectedKeys.contains(apiKey)
+                ForEach(keysStorage.keys) { apiKey in
+                    let isGrayedOut = (keysStorage.keys.firstIndex(of: apiKey)! % 2) != 0 && !keysStorage.selectedKeys.contains(apiKey)
                     
                     APIKeyListCellView(apiKey: apiKey)
                         .padding(6)
@@ -88,14 +69,14 @@ struct APIKeyListView_Previews: PreviewProvider {
         PersistenceController.shared = .previewMany
         return Group {
             APIKeyListView()
-                .environmentObject(APIKeysData(keys: previewManyAPIKeys))
+                .environmentObject(APIKeyStorage(keys: previewManyAPIKeys))
             
             APIKeyListView()
-                .environmentObject(APIKeysData(keys: previewAPIKeys))
+                .environmentObject(APIKeyStorage(keys: previewAPIKeys))
                 .environment(\.colorScheme, .dark)
             
             APIKeyListView()
-                .environmentObject(APIKeysData(keys: previewAPIKeys))
+                .environmentObject(APIKeyStorage(keys: previewAPIKeys))
                 .environment(\.colorScheme, .light)
         }
     }

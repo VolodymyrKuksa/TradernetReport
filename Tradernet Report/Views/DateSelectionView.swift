@@ -74,13 +74,13 @@ struct DateSelectionView_Previews: PreviewProvider {
     static let previewManyApiKeys = fetchAPIKeys(.previewMany)
     
     static var previews: some View {
-        let keysDataWithSelection = APIKeysData(keys: previewApiKeys)
-        keysDataWithSelection.selectedIdentifiers.insert(keysDataWithSelection.keys[0].id)
+        let keyStorageWithSelection = APIKeyStorage(keys: previewApiKeys)
+        keyStorageWithSelection.selectedIdentifiers.insert(keyStorageWithSelection.keys[0].id)
 
-        let singleDayTimeFrame = TimeFrame(dbTimeFrame: keysDataWithSelection.selectedKey!.configs!.timeFrame!)
+        let singleDayTimeFrame = TimeFrame(dbTimeFrame: keyStorageWithSelection.selectedKey!.configs!.timeFrame!)
         singleDayTimeFrame.isSingleDay = true
         
-        let dateRangeTimeFrame = TimeFrame(dbTimeFrame: keysDataWithSelection.selectedKey!.configs!.timeFrame!)
+        let dateRangeTimeFrame = TimeFrame(dbTimeFrame: keyStorageWithSelection.selectedKey!.configs!.timeFrame!)
         dateRangeTimeFrame.isSingleDay = false
         
         return Group {

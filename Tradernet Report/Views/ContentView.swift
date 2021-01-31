@@ -10,9 +10,8 @@ import CoreData
 
 struct ContentView: View {
     var body: some View {
-        PersistenceController.shared = PersistenceController.preview
         return HomeView()
-            .environmentObject(APIKeysData(keys: fetchAPIKeys(.shared)))
+            .environmentObject(APIKeyStorage(keys: fetchAPIKeys(.shared)))
     }
 }
 

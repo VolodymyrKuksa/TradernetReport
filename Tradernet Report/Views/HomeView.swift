@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var keysData: APIKeysData
+    @EnvironmentObject var keyStorage: APIKeyStorage
     
     @State var isDisabled = false
         
@@ -18,13 +18,13 @@ struct HomeView: View {
             APIKeyListView()
                 .blur(radius: isDisabled ? 3 : 0)
             
-            switch keysData.selectedKeys.count {
+            switch keyStorage.selectedKeys.count {
             case 0:
                 Text("select.api.key")
                     .font(.largeTitle)
                     .foregroundColor(.secondary)
             case 1:
-                GetBrokerReportView(configs: GetBrokerReportConfigs(dbConfig: keysData.selectedKey!.configs!), isDisabled: $isDisabled)
+                GetBrokerReportView(configs: GetBrokerReportConfigs(dbConfig: keyStorage.selectedKey!.configs!), isDisabled: $isDisabled)
             default:
                 Text("err.multiple.keys.selected")
                     .font(.largeTitle)
@@ -42,24 +42,24 @@ struct HomeView_Previews: PreviewProvider {
     static let previewManyApiKeys = fetchAPIKeys(.previewMany)
     
     static var previews: some View {
-        let keysDataWithSelection = APIKeysData(keys: previewApiKeys)
-        keysDataWithSelection.selectedIdentifiers.insert(keysDataWithSelection.keys[0].id)
+        let keysStorageWithSelection = APIKeyStorage(keys: previewApiKeys)
+        keysStorageWithSelection.selectedIdentifiers.insert(keysStorageWithSelection.keys[0].id)
         return Group {
             HomeView()
-                .environmentObject(keysDataWithSelection)
+                .environmentObject(keysStorageWithSelection)
             HomeView()
-                .environmentObject(keysDataWithSelection)
+                .environmentObject(keysStorageWithSelection)
                 .environment(\.locale, .init(identifier: "uk"))
             HomeView()
-                .environmentObject(keysDataWithSelection)
+                .environmentObject(keysStorageWithSelection)
                 .environment(\.locale, .init(identifier: "ru"))
             HomeView(isDisabled: true)
-                .environmentObject(keysDataWithSelection)
+                .environmentObject(keysStorageWithSelection)
             HomeView()
-                .environmentObject(APIKeysData(keys: previewManyApiKeys))
+                .environmentObject(APIKeyStorage(keys: previewManyApiKeys))
                 .environment(\.colorScheme, .dark)
             HomeView()
-                .environmentObject(APIKeysData(keys: previewManyApiKeys))
+                .environmentObject(APIKeyStorage(keys: previewManyApiKeys))
                 .environment(\.colorScheme, .light)
         }
     }

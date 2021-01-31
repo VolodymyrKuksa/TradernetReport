@@ -10,7 +10,7 @@ import SwiftUI
 
 struct APIKeyListCellView: View {
     
-    @EnvironmentObject var keysData: APIKeysData
+    @EnvironmentObject var keyStorage: APIKeyStorage
     @ObservedObject var apiKey: APIKey
     
     @State private var isShowingEditModal = false
@@ -79,7 +79,7 @@ struct APIKeyListCellView: View {
                 primaryButton: .destructive(Text("delete")) {
                     PersistenceController.shared.container.viewContext.delete(apiKey)
                     PersistenceController.shared.saveContext()
-                    keysData.keys = fetchAPIKeys(.shared)
+                    keyStorage.keys = fetchAPIKeys(.shared)
                 },
                 secondaryButton: .cancel()
             )

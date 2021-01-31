@@ -11,7 +11,7 @@ import Combine
 
 
 class TimeFrame: ObservableObject {
-    var dbTimeFrame: TimeFrameEntity
+    var dbTimeFrame: TimeFrameData
     
     @Published var isSingleDay: Bool
     @Published var selectedDay: Date
@@ -30,7 +30,7 @@ class TimeFrame: ObservableObject {
 
     var anyCancellables = [AnyCancellable]()
     
-    init(dbTimeFrame entity: TimeFrameEntity) {
+    init(dbTimeFrame entity: TimeFrameData) {
         dbTimeFrame = entity
         
         isSingleDay = Bool(truncating: entity.isSingleDay!)
@@ -78,7 +78,7 @@ class TimeFrame: ObservableObject {
 }
 
 class GetBrokerReportConfigs: ObservableObject {
-    var dbConfig: BrokerReportConfigsEntity
+    var dbConfig: BrokerReportConfigsData
     
     @Published var timeFrame: TimeFrame
     @Published var fileFormat: FileFormat
@@ -96,7 +96,7 @@ class GetBrokerReportConfigs: ObservableObject {
 
     var anyCancellables = [AnyCancellable]()
 
-    init(dbConfig entity: BrokerReportConfigsEntity) {
+    init(dbConfig entity: BrokerReportConfigsData) {
         dbConfig = entity
         
         timeFrame = TimeFrame(dbTimeFrame: entity.timeFrame!)

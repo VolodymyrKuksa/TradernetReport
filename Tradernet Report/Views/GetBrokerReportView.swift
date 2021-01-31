@@ -14,7 +14,7 @@ struct GetBrokerReportView: View {
     
     @ObservedObject var configs: GetBrokerReportConfigs
     
-    @EnvironmentObject var keysData: APIKeysData
+    @EnvironmentObject var keyStorage: APIKeyStorage
     @Binding var isDisabled: Bool
     
     @State var showAdvanced = false
@@ -27,7 +27,7 @@ struct GetBrokerReportView: View {
             
             VStack {
                 HStack {
-                    Text(keysData.selectedKey?.friendlyName ?? "")
+                    Text(keyStorage.selectedKey?.friendlyName ?? "")
                         .font(.headline)
                         .foregroundColor(.secondary)
                         .padding()
@@ -65,7 +65,7 @@ struct GetBrokerReportView: View {
             Button(action: downloadReportAction, label: {
                 HStack {
                     Image(systemName: "square.and.arrow.down")
-                    Text(keysData.selectedIdentifiers.count == 1 ? "download.report" : "download.reports")
+                    Text(keyStorage.selectedIdentifiers.count == 1 ? "download.report" : "download.reports")
                 }
                 .font(.headline)
             })
@@ -108,7 +108,7 @@ struct GetBrokerReportView: View {
         
         DispatchQueue.global(qos: .background).async {
 
-            let selectedAPIKey = keysData.selectedKeys[0]
+            let selectedAPIKey = keyStorage.selectedKeys[0]
             let result = getBrokerReport(
                 publicKey: selectedAPIKey.publicKey!,
                 secret: selectedAPIKey.secret!,
@@ -166,7 +166,7 @@ struct GetBrokerReportView_Previews: PreviewProvider {
     @State static var isDisabled = false
 
     static var previews: some View {
-        let keysDataWithSelection = APIKeysData(keys: previewApiKeys)
+        let keysDataWithSelection = APIKeyStorage(keys: previewApiKeys)
         keysDataWithSelection.selectedIdentifiers.insert(keysDataWithSelection.keys[0].id)
 
         let formatter = DateFormatter()

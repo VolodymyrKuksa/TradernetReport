@@ -12,7 +12,7 @@ struct GetBrokerReportResponse: Decodable {
 }
 
 struct EditAPIKeyView: View {
-    @EnvironmentObject var keysData: APIKeysData
+    @EnvironmentObject var keyStorage: APIKeyStorage
     
     @Binding var isShown: Bool
     var persistenceController: PersistenceController
@@ -123,11 +123,11 @@ struct EditAPIKeyView: View {
         editedKey.secret = secret
         
         if editedKey.configs == nil {
-            editedKey.configs = BrokerReportConfigsEntity(context: persistenceController.container.viewContext)
+            editedKey.configs = BrokerReportConfigsData(context: persistenceController.container.viewContext)
             editedKey.configs!.downloadURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0].path
         }
         if editedKey.configs!.timeFrame == nil {
-            editedKey.configs!.timeFrame = TimeFrameEntity(context: persistenceController.container.viewContext)
+            editedKey.configs!.timeFrame = TimeFrameData(context: persistenceController.container.viewContext)
             let timeFrame = editedKey.configs!.timeFrame!
             timeFrame.dateStart = Date()
             timeFrame.dateEnd = Date()
@@ -136,9 +136,8 @@ struct EditAPIKeyView: View {
         
         persistenceController.saveContext()
         
-        keysData.objectWillChange.send()
-        keysData.changed.toggle()
-        keysData.keys = fetchAPIKeys(persistenceController)
+        keyStorage.objectWillChange.send()
+        keyStorage.keys = fetchAPIKeys(persistenceController)
         withAnimation { isShown = false }
     }
 }
