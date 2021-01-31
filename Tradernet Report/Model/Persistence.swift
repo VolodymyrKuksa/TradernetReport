@@ -14,7 +14,7 @@ struct PersistenceController {
                                     publicKey: String = "sample_public_key",
                                     secret: String = "sample_secret",
                                     clientCode: String = "12345",
-                                    clientName: String = "Volodymyr Kuksa"
+                                    clientName: String = "James Smith"
     ) -> APIKey {
         let sampleKey = APIKey(context: container.viewContext)
         sampleKey.friendlyName = name

@@ -378,6 +378,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Tradernet Report/Tradernet_Report.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tradernet Report/Preview Content\"";
 				DEVELOPMENT_TEAM = 4N4M683WRF;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -402,6 +403,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Tradernet Report/Tradernet_Report.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tradernet Report/Preview Content\"";
 				DEVELOPMENT_TEAM = 4N4M683WRF;
 				ENABLE_HARDENED_RUNTIME = YES;
