@@ -23,7 +23,7 @@ struct DateSelectionView: View {
         VStack {
             HStack {
                 Spacer()
-                Toggle("Single Day", isOn: $timeFrame.isSingleDay.animation())
+                Toggle("single.day", isOn: $timeFrame.isSingleDay.animation())
             }
             
             if timeFrame.isSingleDay {
@@ -44,14 +44,14 @@ struct DateSelectionView: View {
         
         return HStack {
             VStack {
-                Text("Start Date")
+                Text("start.date")
                     .font(.headline)
-                DatePicker("Start Date", selection: $timeFrame.dateStart, in: ...Date(), displayedComponents: [.date])
+                DatePicker("start.date", selection: $timeFrame.dateStart, in: ...Date(), displayedComponents: [.date])
             }
             VStack {
-                Text("End Date")
+                Text("end.date")
                     .font(.headline)
-                DatePicker("End Date", selection: $timeFrame.dateEnd, in: endDateSelectionRange, displayedComponents: [.date])
+                DatePicker("end.date", selection: $timeFrame.dateEnd, in: endDateSelectionRange, displayedComponents: [.date])
                     .disabled(!timeFrame.isValid)
             }
         }
@@ -60,9 +60,9 @@ struct DateSelectionView: View {
     
     private var singleDayDatePicker: some View {
         VStack {
-            Text("Select Day")
+            Text("select.day")
                 .font(.headline)
-            DatePicker("Select Day", selection: $timeFrame.selectedDay, in: ...Date(), displayedComponents: [.date])
+            DatePicker("select.day", selection: $timeFrame.selectedDay, in: ...Date(), displayedComponents: [.date])
                 .labelsHidden()
         }
     }

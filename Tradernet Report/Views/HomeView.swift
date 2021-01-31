@@ -20,13 +20,13 @@ struct HomeView: View {
             
             switch keysData.selectedKeys.count {
             case 0:
-                Text("Select an API Key to proceed")
+                Text("select.api.key")
                     .font(.largeTitle)
                     .foregroundColor(.secondary)
             case 1:
                 GetBrokerReportView(configs: GetBrokerReportConfigs(dbConfig: keysData.selectedKey!.configs!), isDisabled: $isDisabled)
             default:
-                Text("Multiple API Keys are currently not supported :(")
+                Text("err.multiple.keys.selected")
                     .font(.largeTitle)
                     .foregroundColor(.secondary)
             }
@@ -47,6 +47,12 @@ struct HomeView_Previews: PreviewProvider {
         return Group {
             HomeView()
                 .environmentObject(keysDataWithSelection)
+            HomeView()
+                .environmentObject(keysDataWithSelection)
+                .environment(\.locale, .init(identifier: "uk"))
+            HomeView()
+                .environmentObject(keysDataWithSelection)
+                .environment(\.locale, .init(identifier: "ru"))
             HomeView(isDisabled: true)
                 .environmentObject(keysDataWithSelection)
             HomeView()

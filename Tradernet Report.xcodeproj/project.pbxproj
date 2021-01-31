@@ -12,6 +12,7 @@
 		202C4ADC25C163FE00701886 /* GetBrokerReportCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C4ADB25C163FE00701886 /* GetBrokerReportCommand.swift */; };
 		202C4ADF25C1664D00701886 /* GetBrokerReportConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C4ADE25C1664D00701886 /* GetBrokerReportConfigs.swift */; };
 		2082486A25AE12590030D8EF /* DateSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2082486925AE12590030D8EF /* DateSelectionView.swift */; };
+		208AF7B725C5A98E004F2E80 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 208AF7B925C5A98E004F2E80 /* Localizable.strings */; };
 		208FDFFD25A748DA00E4957B /* Tradernet_ReportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FDFFC25A748DA00E4957B /* Tradernet_ReportApp.swift */; };
 		208FDFFF25A748DA00E4957B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FDFFE25A748DA00E4957B /* ContentView.swift */; };
 		208FE00125A748DA00E4957B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 208FE00025A748DA00E4957B /* Assets.xcassets */; };
@@ -32,6 +33,9 @@
 		202C4ADB25C163FE00701886 /* GetBrokerReportCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBrokerReportCommand.swift; sourceTree = "<group>"; };
 		202C4ADE25C1664D00701886 /* GetBrokerReportConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBrokerReportConfigs.swift; sourceTree = "<group>"; };
 		2082486925AE12590030D8EF /* DateSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionView.swift; sourceTree = "<group>"; };
+		208AF7B825C5A98E004F2E80 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		208AF7BB25C5A992004F2E80 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "uk-UA"; path = "uk-UA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		208AF7BD25C6AAA7004F2E80 /* ru-RU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-RU"; path = "ru-RU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		208FDFF925A748DA00E4957B /* Tradernet Report.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tradernet Report.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		208FDFFC25A748DA00E4957B /* Tradernet_ReportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tradernet_ReportApp.swift; sourceTree = "<group>"; };
 		208FDFFE25A748DA00E4957B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +67,7 @@
 		208FDFF025A748DA00E4957B = {
 			isa = PBXGroup;
 			children = (
+				208AF7B925C5A98E004F2E80 /* Localizable.strings */,
 				208FDFFB25A748DA00E4957B /* Tradernet Report */,
 				208FDFFA25A748DA00E4957B /* Products */,
 			);
@@ -177,6 +182,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"uk-UA",
+				"ru-RU",
 			);
 			mainGroup = 208FDFF025A748DA00E4957B;
 			packageReferences = (
@@ -196,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				208FE00425A748DA00E4957B /* Preview Assets.xcassets in Resources */,
+				208AF7B725C5A98E004F2E80 /* Localizable.strings in Resources */,
 				208FE00125A748DA00E4957B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,11 +235,25 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		208AF7B925C5A98E004F2E80 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				208AF7B825C5A98E004F2E80 /* en */,
+				208AF7BB25C5A992004F2E80 /* uk-UA */,
+				208AF7BD25C6AAA7004F2E80 /* ru-RU */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		208FE00C25A748DA00E4957B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -293,6 +315,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

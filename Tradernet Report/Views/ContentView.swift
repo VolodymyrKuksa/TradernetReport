@@ -10,8 +10,7 @@ import CoreData
 
 struct ContentView: View {
     var body: some View {
-        // for debug purposes
-//        PersistenceController.shared = .previewMany
+        PersistenceController.shared = PersistenceController.preview
         return HomeView()
             .environmentObject(APIKeysData(keys: fetchAPIKeys(.shared)))
     }
@@ -19,6 +18,10 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+            ContentView()
+                .environment(\.locale, .init(identifier: "uk"))
+        }
     }
 }

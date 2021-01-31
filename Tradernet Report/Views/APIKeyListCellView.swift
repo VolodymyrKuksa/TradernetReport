@@ -62,7 +62,7 @@ struct APIKeyListCellView: View {
                 .frame(width: modificationButtonSize, height: modificationButtonSize)
         }
         .buttonStyle(PlainButtonStyle())
-        .help("Edit")
+        .help("edit")
     }
     
     private var deleteButton: some View {
@@ -74,9 +74,9 @@ struct APIKeyListCellView: View {
         }
         .alert(isPresented: $isShowingDeleteAlert) {
             Alert(
-                title: Text("Key Deletion"),
-                message: Text("Are you sure you want to delete key \"\(apiKey.friendlyName!)\""),
-                primaryButton: .destructive(Text("Delete")) {
+                title: Text("key.deletion.alert.title"),
+                message: Text("key.deletion.alert.message \"\(apiKey.friendlyName!)\""),
+                primaryButton: .destructive(Text("delete")) {
                     PersistenceController.shared.container.viewContext.delete(apiKey)
                     PersistenceController.shared.saveContext()
                     keysData.keys = fetchAPIKeys(.shared)
@@ -85,7 +85,7 @@ struct APIKeyListCellView: View {
             )
         }
         .buttonStyle(PlainButtonStyle())
-        .help("Delete")
+        .help("delete")
     }
     
     private var clientName: some View {

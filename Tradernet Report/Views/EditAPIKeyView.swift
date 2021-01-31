@@ -25,11 +25,11 @@ struct EditAPIKeyView: View {
     @State var displayErrors = false
     @State var isDisplayingErrorAlert = false
     
-    private let title: String
+    private let title: LocalizedStringKey
     
     init(isShown shown: Binding<Bool>, persistenceController pc: PersistenceController, keyToEdit: APIKey? = nil) {
         self._isShown = shown
-        title = keyToEdit == nil ? "Add API Key" : "Edit API Key"
+        title = keyToEdit == nil ? "add.api.key" : "edit.api.key"
         
         persistenceController = pc
         
@@ -48,19 +48,19 @@ struct EditAPIKeyView: View {
             Text(title)
                 .font(.title)
             
-            editorialTextField(label: "Name", $friendlyName)
-            editorialTextField(label: "Public Key", $publicKey)
-            editorialTextField(label: "Secret", $secret)
+            editorialTextField(label: "name", $friendlyName)
+            editorialTextField(label: "public.key", $publicKey)
+            editorialTextField(label: "secret", $secret)
             
             Spacer()
             
             HStack {
                 Button(action: { withAnimation { isShown = false }}) {
-                    Text("Cancel")
+                    Text("cancel")
                 }
                 Spacer()
                 Button(action: saveAction) {
-                    Text("Save")
+                    Text("save")
                         .foregroundColor(.accentColor)
                 }
             }
@@ -73,20 +73,20 @@ struct EditAPIKeyView: View {
             secret = editedKey.secret!
         }
         .alert(isPresented: $isDisplayingErrorAlert) {
-            Alert(title: Text("Invalid API keys"), message: Text("Failed to communicate with tradernet using the provided keys."))
+            Alert(title: Text("err.api.key.invalid"), message: Text("err.api.key.invalid.message"))
         }
     }
     
-    private func editorialTextField(label: String, _ value: Binding<String>) -> some View {
+    private func editorialTextField(label: LocalizedStringKey, _ value: Binding<String>) -> some View {
         
         let labelWidth: CGFloat = 80 // this might cause issues for larger font sizes
         return HStack {
-            Text("\(label):")
+            Text(label)
                 .frame(width: labelWidth)
             VStack {
                 TextField("", text: value)
                 if displayErrors && value.wrappedValue.isEmpty {
-                    Text("This field cannot be empty!")
+                    Text("err.field.empty")
                         .font(.caption)
                         .foregroundColor(.red)
                 }

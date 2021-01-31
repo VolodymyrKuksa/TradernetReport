@@ -46,12 +46,12 @@ struct APIKeyListView: View {
                         .cornerRadius(8)
                         .contextMenu {
                             Button(action: { insertIntoPasteboard(text: apiKey.publicKey!) }) {
-                                Text("Copy Public Key: \(apiKey.publicKey!)")
+                                Text("copy.public.key: \(apiKey.publicKey!)")
                                 Image(systemName: "doc.on.clipboard")
                             }
                             
                             Button(action: { insertIntoPasteboard(text: apiKey.secret!) }) {
-                                Text("Copy Secret")
+                                Text("copy.secret")
                                 Image(systemName: "doc.on.clipboard")
                             }
                         }
@@ -59,7 +59,7 @@ struct APIKeyListView: View {
             }
         }
         .listStyle(PlainListStyle())
-        .navigationTitle("API Keys")
+        .navigationTitle("api.keys.title")
         .frame(minWidth: 350, idealWidth: 350)
         .sheet(isPresented: $isShowingCreateKeyModal) {
             EditAPIKeyView(isShown: $isShowingCreateKeyModal, persistenceController: .shared)
@@ -69,13 +69,13 @@ struct APIKeyListView: View {
     var listHeader: some View {
         HStack {
             Spacer()
-            Text("API Keys")
+            Text("api.keys.title")
                 .font(.largeTitle)
             Spacer()
             Button(action: { withAnimation { isShowingCreateKeyModal = true } }) {
                 Image(systemName: "plus")
             }
-            .help("Add New API Key")
+            .help("add.api.key.help")
         }
     }
 }

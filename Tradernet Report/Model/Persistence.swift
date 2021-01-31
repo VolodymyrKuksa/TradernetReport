@@ -9,28 +9,34 @@ import CoreData
 
 struct PersistenceController {
     static var shared = PersistenceController()
+    
+    private func createSampleAPIKey(name: String = "Sample Key",
+                                    publicKey: String = "sample_public_key",
+                                    secret: String = "sample_secret",
+                                    clientCode: String = "12345",
+                                    clientName: String = "Volodymyr Kuksa"
+    ) -> APIKey {
+        let sampleKey = APIKey(context: container.viewContext)
+        sampleKey.friendlyName = name
+        sampleKey.publicKey = publicKey
+        sampleKey.secret = secret
+        sampleKey.clientCode = clientCode
+        sampleKey.clientName = clientName
+        sampleKey.configs = BrokerReportConfigsEntity(context: container.viewContext)
+        sampleKey.configs!.downloadURL = "~/Downloads/"
+        sampleKey.configs!.timeFrame = TimeFrameEntity(context: container.viewContext)
+        sampleKey.configs!.timeFrame!.selectedDay = Date()
+        sampleKey.configs!.timeFrame!.dateStart = Date()
+        sampleKey.configs!.timeFrame!.dateEnd = Date()
+        return sampleKey
+    }
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         
-        let sampleKey = APIKey(context: viewContext)
-        sampleKey.friendlyName = "Sample Key"
-        sampleKey.publicKey = "my_public_key"
-        sampleKey.secret = "my_secret"
-        sampleKey.clientCode = "12345"
-        sampleKey.clientName = "Volodymyr Kuksa"
-        sampleKey.configs = BrokerReportConfigsEntity(context: viewContext)
-        sampleKey.configs?.timeFrame = TimeFrameEntity(context: viewContext)
-        
-        let sampleKeyWithLargeName = APIKey(context: viewContext)
-        sampleKeyWithLargeName.friendlyName = "This is an API Key with a real big name he he he he he he he he"
-        sampleKeyWithLargeName.publicKey = "my_public_key"
-        sampleKeyWithLargeName.secret = "my_secret"
-        sampleKeyWithLargeName.clientCode = "12345"
-        sampleKeyWithLargeName.clientName = "Volodymyr Kuksa"
-        sampleKeyWithLargeName.configs = BrokerReportConfigsEntity(context: viewContext)
-        sampleKeyWithLargeName.configs?.timeFrame = TimeFrameEntity(context: viewContext)
+        let sampleKey = result.createSampleAPIKey()
+        let sampleKeyWithLargeName = result.createSampleAPIKey(name: "This is an API Key with a real big name he he he he he he he he")
         
         do {
             try viewContext.save()
@@ -46,14 +52,7 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         
         for idx in 1...10 {
-            let sampleKey = APIKey(context: viewContext)
-            sampleKey.friendlyName = "Sample Key \(idx)"
-            sampleKey.publicKey = "my_public_key \(idx)"
-            sampleKey.secret = "my_secret \(idx)"
-            sampleKey.clientCode = "12345"
-            sampleKey.clientName = "Volodymyr Kuksa"
-            sampleKey.configs = BrokerReportConfigsEntity(context: viewContext)
-            sampleKey.configs?.timeFrame = TimeFrameEntity(context: viewContext)
+            let sampleKey = result.createSampleAPIKey(name: "Sample Key \(idx)")
         }
         
         do {

@@ -46,17 +46,17 @@ struct GetBrokerReportView: View {
         VStack {
             DateSelectionView(timeFrame: configs.timeFrame)
             
-            Picker("File Format", selection: $configs.fileFormat) {
+            Picker("file.format", selection: $configs.fileFormat) {
                 ForEach(GetBrokerReportConfigs.FileFormat.allCases) { format in
                     Text(format.rawValue)
                 }
             }
             
             HStack {
-                Text("Download To: \(configs.downloadURL)")
+                Text("download.location: \(configs.downloadURL)")
                 
                 Button(action: selectDownloadPathAction) {
-                    Text("Change...")
+                    Text("donwload.location.change")
                 }
             }
             
@@ -65,7 +65,7 @@ struct GetBrokerReportView: View {
             Button(action: downloadReportAction, label: {
                 HStack {
                     Image(systemName: "square.and.arrow.down")
-                    Text(keysData.selectedIdentifiers.count == 1 ? "Download Report" : "Download Reports")
+                    Text(keysData.selectedIdentifiers.count == 1 ? "download.report" : "download.reports")
                 }
                 .font(.headline)
             })
@@ -76,7 +76,7 @@ struct GetBrokerReportView: View {
             HStack {
                 Spacer()
                 Button(action: { withAnimation { showAdvanced.toggle() } }, label: {
-                    Text("Advanced")
+                    Text("advanced")
                     Image(systemName: "chevron.down")
                         .rotationEffect(.degrees(showAdvanced ? 0 : 180))
                 })
@@ -85,7 +85,7 @@ struct GetBrokerReportView: View {
             
             if showAdvanced {
                 VStack {
-                    Picker("Time Period", selection: $configs.timeFrame.timePeriod) {
+                    Picker("time.period", selection: $configs.timeFrame.timePeriod) {
                         ForEach(TimeFrame.TimePeriod.allCases) { period in
                             Text(period.rawValue)
                         }
@@ -129,8 +129,8 @@ struct GetBrokerReportView: View {
     
     private func getFileDialog() -> NSOpenPanel {
         let openPanel = NSOpenPanel()
-        openPanel.title = "Download Location"
-        openPanel.message = "Choose or Create a Folder"
+        openPanel.title = NSLocalizedString("download.location", comment: "")
+        openPanel.message = NSLocalizedString("download.message", comment: "")
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = true
         openPanel.canChooseFiles = false
@@ -147,15 +147,15 @@ struct GetBrokerReportView: View {
         }
     }
     
-    private func composeTimeFrameHint() -> String {
+    private func composeTimeFrameHint() -> LocalizedStringKey {
         if !configs.timeFrame.isValid {
-            return "Invalid time frame."
+            return LocalizedStringKey("err.time.frame.invalid")
         }
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.y hh:mm:ss"
         
         let interval = configs.timeFrame.dateInterval
-        return "Since \(formatter.string(from: interval.start)) to \(formatter.string(from: interval.end))"
+        return LocalizedStringKey("since \(formatter.string(from: interval.start)) to \(formatter.string(from: interval.end))")
     }
 }
 
