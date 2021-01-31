@@ -159,29 +159,26 @@ struct GetBrokerReportView: View {
     }
 }
 
-//struct GetBrokerReportView_Previews: PreviewProvider {
-//    static let previewApiKeys = fetchAPIKeys()
-//    static let previewManyApiKeys = fetchAPIKeys(.previewMany)
-//
-//    @State static var isDisabled = false
-//
-//    static var previews: some View {
-//        let keysDataWithSelection = APIKeysData(keys: previewApiKeys)
-//        keysDataWithSelection.selectedIdentifiers.insert(keysDataWithSelection.keys[0].id)
-//
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "dd.MM.y hh:mm:ss"
-//
-//        let edgeCase = GetBrokerReportConfigs()
-//        edgeCase.timeFrame.dateStart = formatter.date(from: "01.01.2021 00:00:00")!
-//
-//        return Group {
-//            GetBrokerReportView(isDisabled: $isDisabled)
-//                .environmentObject(keysDataWithSelection)
-//            GetBrokerReportView(isDisabled: $isDisabled, showAdvanced: true)
-//                .environmentObject(keysDataWithSelection)
-//            GetBrokerReportView(isDisabled: $isDisabled)
-//                .environmentObject(APIKeysData(keys: previewApiKeys))
-//        }
-//    }
-//}
+struct GetBrokerReportView_Previews: PreviewProvider {
+    static let previewApiKeys = fetchAPIKeys()
+    static let previewManyApiKeys = fetchAPIKeys(.previewMany)
+
+    @State static var isDisabled = false
+
+    static var previews: some View {
+        let keysDataWithSelection = APIKeysData(keys: previewApiKeys)
+        keysDataWithSelection.selectedIdentifiers.insert(keysDataWithSelection.keys[0].id)
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.y hh:mm:ss"
+        
+        let configs = GetBrokerReportConfigs(dbConfig: keysDataWithSelection.selectedKey!.configs!)
+
+        return Group {
+            GetBrokerReportView(configs: configs, isDisabled: $isDisabled)
+                .environmentObject(keysDataWithSelection)
+            GetBrokerReportView(configs: configs, isDisabled: $isDisabled, showAdvanced: true)
+                .environmentObject(keysDataWithSelection)
+        }
+    }
+}
