@@ -16,7 +16,19 @@ class TimeFrame: ObservableObject {
     @Published var isSingleDay: Bool
     @Published var selectedDay: Date
 
-    @Published var dateStart: Date
+    @Published var _dateStart: Date
+    var dateStart: Date {
+        get {
+            return _dateStart
+        }
+        set {
+            if newValue > dateEnd {
+                dateEnd = newValue
+            }
+            _dateStart = newValue
+        }
+    }
+    
     @Published var dateEnd: Date
 
     @Published var timePeriod: TimePeriod
@@ -35,7 +47,7 @@ class TimeFrame: ObservableObject {
         
         isSingleDay = Bool(truncating: entity.isSingleDay!)
         selectedDay = entity.selectedDay!
-        dateStart = entity.dateStart!
+        _dateStart = entity.dateStart!
         dateEnd = entity.dateEnd!
         timePeriod = TimePeriod(rawValue: entity.timePeriod!)!
         
