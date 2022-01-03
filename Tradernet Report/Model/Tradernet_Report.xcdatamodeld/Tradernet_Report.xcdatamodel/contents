@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="APIKey" representedClassName="APIKey" syncable="YES" codeGenerationType="class">
         <attribute name="clientCode" optional="YES" attributeType="String"/>
         <attribute name="clientName" optional="YES" attributeType="String"/>
@@ -17,6 +17,7 @@
     <entity name="TimeFrameData" representedClassName="TimeFrameData" syncable="YES" codeGenerationType="class">
         <attribute name="dateEnd" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateStart" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isDaily" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isSingleDay" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="NO"/>
         <attribute name="selectedDay" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="timePeriod" attributeType="String" defaultValueString="23:59:59"/>
@@ -25,6 +26,6 @@
     <elements>
         <element name="APIKey" positionX="-63" positionY="-18" width="128" height="119"/>
         <element name="BrokerReportConfigsData" positionX="-63.2523193359375" positionY="42.34869384765625" width="128" height="89"/>
-        <element name="TimeFrameData" positionX="-64.0157470703125" positionY="108.521728515625" width="128" height="119"/>
+        <element name="TimeFrameData" positionX="-64.0157470703125" positionY="108.521728515625" width="128" height="134"/>
     </elements>
 </model>

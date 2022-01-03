@@ -33,4 +33,4 @@
 "err.api.key.invalid" =  "Invalid API key";
 "err.api.key.invalid.message" = "Failed to communicate with tradernet using the provided key.";
 "err.field.empty" = "This field cannot be empty!";
-
+"timeframe.daily" = "Daily";

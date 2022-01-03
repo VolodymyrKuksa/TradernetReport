@@ -42,20 +42,24 @@ struct DateSelectionView: View {
         let rangeEnd = Date()
         let endDateSelectionRange = timeFrame.isValid ? rangeStart...rangeEnd : Date(timeIntervalSinceReferenceDate: 0)...Date()
         
-        return HStack {
-            VStack {
-                Text("start.date")
-                    .font(.headline)
-                DatePicker("start.date", selection: $timeFrame.dateStart, in: ...Date(), displayedComponents: [.date])
+        return VStack {
+            HStack {
+                VStack {
+                    Text("start.date")
+                        .font(.headline)
+                    DatePicker("start.date", selection: $timeFrame.dateStart, in: ...Date(), displayedComponents: [.date])
+                }
+                VStack {
+                    Text("end.date")
+                        .font(.headline)
+                    DatePicker("end.date", selection: $timeFrame.dateEnd, in: endDateSelectionRange, displayedComponents: [.date])
+                        .disabled(!timeFrame.isValid)
+                }
             }
-            VStack {
-                Text("end.date")
-                    .font(.headline)
-                DatePicker("end.date", selection: $timeFrame.dateEnd, in: endDateSelectionRange, displayedComponents: [.date])
-                    .disabled(!timeFrame.isValid)
-            }
+            .labelsHidden()
+            
+            Toggle("timeframe.daily", isOn: $timeFrame.isDaily);
         }
-        .labelsHidden()
     }
     
     private var singleDayDatePicker: some View {

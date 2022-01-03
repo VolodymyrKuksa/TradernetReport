@@ -9,11 +9,23 @@ import Foundation
 import Combine
 
 
+extension Date: Strideable {
+    public func distance(to other: Date) -> TimeInterval {
+        return other.timeIntervalSinceReferenceDate - self.timeIntervalSinceReferenceDate
+    }
+
+    public func advanced(by n: TimeInterval) -> Date {
+        return self + n
+    }
+}
+
+
 
 class TimeFrame: ObservableObject {
     var dbTimeFrame: TimeFrameData
     
     @Published var isSingleDay: Bool
+    @Published var isDaily: Bool
     @Published var selectedDay: Date
 
     @Published var _dateStart: Date
@@ -46,6 +58,7 @@ class TimeFrame: ObservableObject {
         dbTimeFrame = entity
         
         isSingleDay = Bool(truncating: entity.isSingleDay!)
+        isDaily = entity.isDaily
         selectedDay = entity.selectedDay!
         _dateStart = entity.dateStart!
         dateEnd = entity.dateEnd!
@@ -55,6 +68,7 @@ class TimeFrame: ObservableObject {
             DispatchQueue.main.async {
                 if self != nil {
                     self!.dbTimeFrame.isSingleDay = NSNumber(value: self!.isSingleDay)
+                    self!.dbTimeFrame.isDaily = self!.isDaily
                     self!.dbTimeFrame.selectedDay = self!.selectedDay
                     self!.dbTimeFrame.dateStart = self!.dateStart
                     self!.dbTimeFrame.dateEnd = self!.dateEnd

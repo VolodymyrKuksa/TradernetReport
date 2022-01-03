@@ -103,23 +103,41 @@ struct GetBrokerReportView: View {
     private func downloadReportAction() {
         withAnimation { isDisabled = true }
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        
         DispatchQueue.global(qos: .background).async {
 
             let selectedAPIKey = keyStorage.selectedKeys[0]
-            let result = getBrokerReport(
-                publicKey: selectedAPIKey.publicKey!,
-                secret: selectedAPIKey.secret!,
-                fileFormat: configs.fileFormat.rawValue,
-                outputDirectory: configs.downloadURL,
-                dateStart: configs.timeFrame.dateInterval.start,
-                dateEnd: configs.timeFrame.dateInterval.end,
-                timePeriod: configs.timeFrame.timePeriod == TimeFrame.TimePeriod.morning ? "morning" : "evening"
-            )
+            var result: CommandResult
             
-            print("code: \(result.code)\nout: \(result.out)\nerr: \(result.err)")
+            if (!configs.timeFrame.isSingleDay && configs.timeFrame.isDaily) {
+                let dayDurationInSeconds: TimeInterval = 60*60*24
+                for date in stride(from: configs.timeFrame.dateInterval.start, to: configs.timeFrame.dateInterval.end, by: dayDurationInSeconds) {
+                    result = getBrokerReport(
+                        publicKey: selectedAPIKey.publicKey!,
+                        secret: selectedAPIKey.secret!,
+                        fileFormat: configs.fileFormat.rawValue,
+                        outputDirectory: configs.downloadURL,
+                        dateStart: date,
+                        dateEnd: date.advanced(by: dayDurationInSeconds),
+                        timePeriod: configs.timeFrame.timePeriod == TimeFrame.TimePeriod.morning ? "morning" : "evening"
+                    )
+                    print("code: \(result.code)\nout: \(result.out)\nerr: \(result.err)")
+                    if result.code != 0 {
+                        break;
+                    }
+                }
+            }
+            else {
+                result = getBrokerReport(
+                    publicKey: selectedAPIKey.publicKey!,
+                    secret: selectedAPIKey.secret!,
+                    fileFormat: configs.fileFormat.rawValue,
+                    outputDirectory: configs.downloadURL,
+                    dateStart: configs.timeFrame.dateInterval.start,
+                    dateEnd: configs.timeFrame.dateInterval.end,
+                    timePeriod: configs.timeFrame.timePeriod == TimeFrame.TimePeriod.morning ? "morning" : "evening"
+                )
+                print("code: \(result.code)\nout: \(result.out)\nerr: \(result.err)")
+            }
             
             DispatchQueue.main.async {
                 withAnimation { isDisabled = false }

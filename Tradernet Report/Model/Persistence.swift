@@ -25,6 +25,8 @@ struct PersistenceController {
         sampleKey.configs = BrokerReportConfigsData(context: container.viewContext)
         sampleKey.configs!.downloadURL = "~/Downloads/"
         sampleKey.configs!.timeFrame = TimeFrameData(context: container.viewContext)
+        sampleKey.configs!.timeFrame?.isSingleDay = false;
+        sampleKey.configs!.timeFrame!.isDaily = true;
         sampleKey.configs!.timeFrame!.selectedDay = Date()
         sampleKey.configs!.timeFrame!.dateStart = Date()
         sampleKey.configs!.timeFrame!.dateEnd = Date()
